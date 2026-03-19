@@ -1,0 +1,29 @@
+name: Đóng gói và Đẩy Image Docker lên Hub   # Tên quy trình CI/CD
+
+on:
+  push:
+    branches: [ "main" ]                     # Chạy tự động khi có code mới đẩy lên nhánh main
+
+jobs:
+  build_va_push_docker:
+    runs-on: ubuntu-latest                   # Mượn máy ảo Ubuntu của GitHub để chạy
+
+    steps:
+      - name: Bước 1 - Lấy code từ Github
+        uses: actions/checkout@v6.0.2            # Robot tự động copy code vào máy ảo
+
+      - name: Bước 2 - Thiết lập môi trường Build siêu tốc  
+        uses: docker/setup-buildx-action@v4.0.0  # Cài đặt công cụ đóng gói mạnh mẽ của Docker
+
+      - name: Bước 3 - Đăng nhập vào Docker Hub
+        uses: docker/login-action@v4.0.0       # Action Đăng nhập Docker Hub
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Bước 4 - Đóng gói và Đẩy Image lên mạng
+        uses: docker/build-push-action@v7.0.0    # Action Đóng gói & Đẩy Image
+        with:
+          context: .                         # Xây dựng Dockerfile từ thư mục gốc
+          push: true                         # Cho phép đẩy thẳng lên Docker Hub
+          tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-app:latest  # Tên Image sẽ tạo ra trên Hub
