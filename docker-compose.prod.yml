@@ -1,0 +1,30 @@
+services:
+  # MySQL Database Service
+  mysql_db:
+    image: mysql:8.0
+    container_name: portfolio_mysql_prod
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=portfolio_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data-prod:/var/lib/mysql
+    restart: unless-stopped
+
+  # Spring Boot Application Service (Production Image)
+  app:
+    image: truongvuminhvan/portfolio-app:latest
+    container_name: portfolio_app_prod
+    ports:
+      - "80:8080"
+    depends_on:
+      - mysql_db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql_db:3306/portfolio_db?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    restart: unless-stopped
+
+volumes:
+  mysql-data-prod:
