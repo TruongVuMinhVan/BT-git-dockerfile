@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <aside class="ide-sidebar" th:fragment="sidebar">
+        <div class="sidebar-header">
+            <span>TRÌNH QUẢN LÝ TẬP TIN</span>
+            <i class="fas fa-ellipsis-h"></i>
+        </div>
+        
+        <div class="sidebar-content">
+            <!-- PORTFOLIO FOLDER -->
+            <div class="folder-group">
+                <div class="folder-title" onclick="this.classList.toggle('collapsed')">
+                    <i class="fas fa-chevron-down"></i>
+                    <i class="fas fa-folder-open folder-icon"></i>
+                    <span>TỔNG QUAN</span>
+                </div>
+                <div class="folder-items">
+                    <div class="file-item active" onclick="openIdeTab('hero')">
+                        <i class="fab fa-markdown file-icon md"></i>
+                        <span>README.md</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERSONAL FOLDER -->
+            <div class="folder-group">
+                <div class="folder-title" onclick="this.classList.toggle('collapsed')">
+                    <i class="fas fa-chevron-down"></i>
+                    <i class="fas fa-folder-open folder-icon"></i>
+                    <span>HỒ SƠ CÁ NHÂN</span>
+                </div>
+                <div class="folder-items">
+                    <div class="file-item" onclick="openIdeTab('education')">
+                        <i class="fab fa-js file-icon js"></i>
+                        <span>education.js</span>
+                    </div>
+                    <div class="file-item" onclick="openIdeTab('experience')">
+                        <i class="fab fa-python file-icon py"></i>
+                        <span>experience.py</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TECH FOLDER -->
+            <div class="folder-group">
+                <div class="folder-title" onclick="this.classList.toggle('collapsed')">
+                    <i class="fas fa-chevron-down"></i>
+                    <i class="fas fa-folder-open folder-icon"></i>
+                    <span>CÔNG NGHỆ</span>
+                </div>
+                <div class="folder-items">
+                    <div class="file-item" onclick="openIdeTab('skills')">
+                        <i class="fab fa-react file-icon tsx"></i>
+                        <span>skills.tsx</span>
+                    </div>
+                    <div class="file-item" onclick="openIdeTab('certificates')">
+                        <i class="fas fa-certificate file-icon json"></i>
+                        <span>certificates.json</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECTS FOLDER -->
+            <div class="folder-group">
+                <div class="folder-title" onclick="this.classList.toggle('collapsed')">
+                    <i class="fas fa-chevron-down"></i>
+                    <i class="fas fa-folder-open folder-icon"></i>
+                    <span>DỰ ÁN</span>
+                </div>
+                <div class="folder-items">
+                    <div class="file-item" onclick="openIdeTab('project')">
+                        <i class="fab fa-java file-icon java"></i>
+                        <span>projects.java</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </aside>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <nav class="nav" th:fragment="nav">
+        <a href="/" class="nav-logo">
+            <span class="logo-bracket">{</span> TVMVan <span class="logo-bracket">}</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" onclick="openIdeTab('hero'); return false;" class="active">_about</a></li>
+            <li><a href="#" onclick="openIdeTab('skills'); return false;">_skills</a></li>
+            <li><a href="#" onclick="openIdeTab('education'); return false;">_education</a></li>
+            <li><a href="#" onclick="openIdeTab('certificates'); return false;">_certificates</a></li>
+            <li><a href="#" onclick="openIdeTab('experience'); return false;">_experience</a></li>
+            <li><a href="#" onclick="openIdeTab('project'); return false;">_project</a></li>
+        </ul>
+        <button class="nav-hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+</body>
+</html>

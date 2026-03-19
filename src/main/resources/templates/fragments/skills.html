@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <section id="skills" class="section fade-in" th:fragment="skills">
+        <div class="section-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 30px;">
+            <div class="section-icon"><i class="fas fa-code"></i></div>
+            <h2>_skills</h2>
+            <button class="crud-btn btn-add" title="Thêm mới" onclick="alert('Đang phát triển tính năng thêm mới!')" style="background: rgba(0, 212, 255, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;"><i class="fas fa-plus"></i></button>
+            <div class="section-line" style="flex: 1; height: 1px; background: var(--border-color);"></div>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card" style="position: relative;">
+                <div class="crud-actions" style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; opacity: 0; transition: opacity 0.2s;">
+                    <button class="crud-btn btn-edit" title="Sửa" onclick="alert('Tính năng sửa')" style="background: transparent; border: none; color: var(--accent-yellow); cursor: pointer; padding: 4px;"><i class="fas fa-edit"></i></button>
+                    <button class="crud-btn btn-delete" title="Xóa" onclick="alert('Tính năng xóa')" style="background: transparent; border: none; color: #ff5f56; cursor: pointer; padding: 4px;"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="skill-icon"><i class="fas fa-server"></i></div>
+                <div>
+                    <strong>Backend & Database</strong>
+                    <p>Node.js, Express, MongoDB – RESTful API integration and database management.</p>
+                </div>
+            </div>
+            <div class="skill-card" style="position: relative;">
+                <div class="crud-actions" style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; opacity: 0; transition: opacity 0.2s;">
+                    <button class="crud-btn btn-edit" title="Sửa" onclick="alert('Tính năng sửa')" style="background: transparent; border: none; color: var(--accent-yellow); cursor: pointer; padding: 4px;"><i class="fas fa-edit"></i></button>
+                    <button class="crud-btn btn-delete" title="Xóa" onclick="alert('Tính năng xóa')" style="background: transparent; border: none; color: #ff5f56; cursor: pointer; padding: 4px;"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                <div>
+                    <strong>AI & Machine Learning</strong>
+                    <p>Python – develop and train predictive AI models with Google Colab & Kaggle.</p>
+                </div>
+            </div>
+            <div class="skill-card" style="position: relative;">
+                <div class="crud-actions" style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; opacity: 0; transition: opacity 0.2s;">
+                    <button class="crud-btn btn-edit" title="Sửa" onclick="alert('Tính năng sửa')" style="background: transparent; border: none; color: var(--accent-yellow); cursor: pointer; padding: 4px;"><i class="fas fa-edit"></i></button>
+                    <button class="crud-btn btn-delete" title="Xóa" onclick="alert('Tính năng xóa')" style="background: transparent; border: none; color: #ff5f56; cursor: pointer; padding: 4px;"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                <div>
+                    <strong>Web & Mobile Dev</strong>
+                    <p>Next.js, React, Dart – responsive, scalable web and cross-platform mobile apps.</p>
+                </div>
+            </div>
+            <div class="skill-card" style="position: relative;">
+                <div class="crud-actions" style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; opacity: 0; transition: opacity 0.2s;">
+                    <button class="crud-btn btn-edit" title="Sửa" onclick="alert('Tính năng sửa')" style="background: transparent; border: none; color: var(--accent-yellow); cursor: pointer; padding: 4px;"><i class="fas fa-edit"></i></button>
+                    <button class="crud-btn btn-delete" title="Xóa" onclick="alert('Tính năng xóa')" style="background: transparent; border: none; color: #ff5f56; cursor: pointer; padding: 4px;"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="skill-icon"><i class="fas fa-palette"></i></div>
+                <div>
+                    <strong>UI/UX & Styling</strong>
+                    <p>Tailwind CSS, Bootstrap – clean, reusable UI components.</p>
+                </div>
+            </div>
+            <div class="skill-card" style="position: relative;">
+                <div class="crud-actions" style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; opacity: 0; transition: opacity 0.2s;">
+                    <button class="crud-btn btn-edit" title="Sửa" onclick="alert('Tính năng sửa')" style="background: transparent; border: none; color: var(--accent-yellow); cursor: pointer; padding: 4px;"><i class="fas fa-edit"></i></button>
+                    <button class="crud-btn btn-delete" title="Xóa" onclick="alert('Tính năng xóa')" style="background: transparent; border: none; color: #ff5f56; cursor: pointer; padding: 4px;"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                <div>
+                    <strong>Tools & Workflow</strong>
+                    <p>Git, GitHub, Docker, Trello – Scrum, pull requests, containerization.</p>
+                </div>
+            </div>
+            <div class="skill-card" style="position: relative;">
+                <div class="crud-actions" style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; opacity: 0; transition: opacity 0.2s;">
+                    <button class="crud-btn btn-edit" title="Sửa" onclick="alert('Tính năng sửa')" style="background: transparent; border: none; color: var(--accent-yellow); cursor: pointer; padding: 4px;"><i class="fas fa-edit"></i></button>
+                    <button class="crud-btn btn-delete" title="Xóa" onclick="alert('Tính năng xóa')" style="background: transparent; border: none; color: #ff5f56; cursor: pointer; padding: 4px;"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="skill-icon"><i class="fas fa-bolt"></i></div>
+                <div>
+                    <strong>Performance & Testing</strong>
+                    <p>Lazy loading, code splitting, black/white box, unit & integration testing.</p>
+                </div>
+            </div>
+            <div class="skill-card" style="position: relative;">
+                <div class="crud-actions" style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; opacity: 0; transition: opacity 0.2s;">
+                    <button class="crud-btn btn-edit" title="Sửa" onclick="alert('Tính năng sửa')" style="background: transparent; border: none; color: var(--accent-yellow); cursor: pointer; padding: 4px;"><i class="fas fa-edit"></i></button>
+                    <button class="crud-btn btn-delete" title="Xóa" onclick="alert('Tính năng xóa')" style="background: transparent; border: none; color: #ff5f56; cursor: pointer; padding: 4px;"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="skill-icon"><i class="fas fa-rocket"></i></div>
+                <div>
+                    <strong>Soft Skills</strong>
+                    <p>Fast self-learning, logical problem-solving, time management, adaptability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head}">
+    <title>Lỗi - Truong Vu Minh Van</title>
+</head>
+<body>
+
+    <!-- IDE Navigation Bar -->
+    <div th:replace="~{fragments/nav :: nav}"></div>
+
+    <!-- Error Content -->
+    <main class="content">
+        <section class="error-section" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 120px 20px 60px;">
+            <div class="error-container fade-in" style="max-width: 600px; width: 100%; text-align: center;">
+                
+                <!-- Icon -->
+                <div class="error-icon-wrapper" style="position: relative; display: inline-block; margin-bottom: 25px;">
+                    <i class="fas fa-exclamation-triangle glowing-warning" style="font-size: 80px; color: #ff5f56; filter: drop-shadow(0 0 20px rgba(255, 95, 86, 0.6)); animation: pulseWarning 2s infinite ease-in-out;"></i>
+                    <span class="error-badge" th:text="${status != null ? status : '404'}" style="position: absolute; top: -10px; right: -30px; background: #ff5f56; color: #121212; font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 12px; letter-spacing: 1px; transform: rotate(15deg);">404</span>
+                </div>
+
+                <!-- Titles -->
+                <h1 class="error-title" style="font-size: 2.5rem; color: var(--text-primary); font-weight: 800; margin-bottom: 10px;">An error occurred.</h1>
+                <h3 class="error-subtitle" th:text="${error != null ? error : 'Page not found.'}" style="color: #ff5f56; font-size: 1.1rem; font-family: var(--font-mono); margin-bottom: 15px;">Page not found.</h3>
+                <p class="error-desc" style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px;">Don't worry, this issue has been reported.</p>
+
+                <!-- Code Block Error -->
+                <div class="error-code-block" style="background-color: #151a2a; border-radius: 10px; padding: 20px; text-align: left; font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.6; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 40px; overflow-x: auto;">
+                    <pre style="margin: 0;"><code style="color: var(--text-primary);"><span class="t-keyword">try</span> <span class="t-bracket">{</span>
+    <span class="t-function">loadPage</span>();
+<span class="t-bracket">}</span> <span class="t-keyword">catch</span> (<span class="t-variable">error</span>) <span class="t-bracket">{</span>
+    <span class="t-variable">console</span>.<span class="t-function">error</span>(<span class="t-string">'Failed to execute request: <span th:text="${path != null ? path : '/unknown'}"></span>...'</span>);
+    <span class="t-function">showErrorPage</span>();
+<span class="t-bracket">}</span></code></pre>
+                </div>
+
+                <!-- Actions -->
+                <div class="error-actions" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 50px;">
+                    <button onclick="window.location.reload()" class="btn-retry" style="padding: 12px 24px; border-radius: 8px; font-family: var(--font-primary); font-weight: 600; font-size: 0.95rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; background: var(--accent-yellow); color: #121212; border: none;">
+                        <i class="fas fa-sync-alt"></i> Retry
+                    </button>
+                    <a href="/" class="btn-home" style="padding: 12px 24px; border-radius: 8px; font-family: var(--font-primary); font-weight: 600; font-size: 0.95rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; background: transparent; color: var(--text-muted); border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                </div>
+
+                <!-- Footer text -->
+                <div class="error-footer" style="color: var(--text-muted); font-size: 0.85rem;">
+                    <p>If this issue persists, please contact me.</p>
+                    <a href="mailto:van@example.com" class="btn-contact" style="display: inline-block; margin-top: 10px; background: #1e263c; color: #72a0f5; text-decoration: none; padding: 6px 15px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.8rem; transition: all 0.2s ease;">contact</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <script th:src="@{/js/script.js}"></script>
+    <style>
+        @keyframes pulseWarning {
+            0% { filter: drop-shadow(0 0 10px rgba(255, 95, 86, 0.4)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 30px rgba(255, 95, 86, 0.8)); transform: scale(1.05); }
+            100% { filter: drop-shadow(0 0 10px rgba(255, 95, 86, 0.4)); transform: scale(1); }
+        }
+        .btn-retry:hover { background: #f1a95e !important; transform: translateY(-2px); }
+        .btn-home:hover { background: rgba(255, 255, 255, 0.05) !important; color: var(--text-primary) !important; }
+        .btn-contact:hover { background: #252e46 !important; color: #92b7ff !important; }
+    </style>
+</body>
+</html>

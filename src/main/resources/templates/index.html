@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Replace with head fragment -->
+<head th:replace="~{fragments/head :: head}"></head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow">
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Replace with nav fragment -->
+    <nav th:replace="~{fragments/nav :: nav}"></nav>
+
+    <!-- ===== IDE LAYOUT ===== -->
+    <div class="ide-container">
+        <!-- Sidebar File Explorer -->
+        <aside th:replace="~{fragments/sidebar :: sidebar}"></aside>
+
+        <!-- Main Editor Area -->
+        <main class="ide-main">
+            <!-- Editor Tabs Bar -->
+            <div class="ide-tabs-bar" id="ideTabsBar">
+                <div class="ide-tab active" data-target="hero">
+                    <i class="fab fa-markdown file-icon md"></i> README.md <i class="fas fa-times close-tab"></i>
+                </div>
+            </div>
+
+            <!-- Editor Content Area -->
+            <div class="ide-editor-content">
+                
+                <section id="hero" class="editor-pane active" th:replace="~{fragments/hero :: hero}"></section>
+                
+                <section id="skills" class="editor-pane" th:replace="~{fragments/skills :: skills}" style="display: none;"></section>
+                
+                <section id="education" class="editor-pane" th:replace="~{fragments/education :: education}" style="display: none;"></section>
+                
+                <section id="certificates" class="editor-pane" th:replace="~{fragments/certificates :: certificates}" style="display: none;"></section>
+                
+                <section id="experience" class="editor-pane" th:replace="~{fragments/experience :: experience}" style="display: none;"></section>
+                
+                <section id="project" class="editor-pane" th:replace="~{fragments/project :: project}" style="display: none;"></section>
+            
+            </div>
+        </main>
+    </div>
+
+    <!-- Replace with footer fragment -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <script th:src="@{/js/script.js}"></script>
+</body>
+
+</html>

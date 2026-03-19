@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <section id="about" class="hero" th:fragment="hero">
+        <div class="hero-left">
+            <div class="hero-intro">
+                <img src="/images/profile.png" alt="Truong Vu Minh Van" class="hero-avatar">
+                <div>
+                    <p class="hero-greeting">// Hello World, I'm</p>
+                    <h1 class="hero-name">Truong Vu<br>Minh Van</h1>
+                </div>
+            </div>
+            <p class="hero-role">&gt; <span id="roleText"></span><span class="cursor"></span></p>
+
+            <div class="hero-comment">
+                <span class="comment">// Todo: Do more projects</span><br>
+                <span class="comment">// My Github:</span><br>
+                <span class="keyword">const</span> <span class="variable">githubLink</span> = <a
+                    href="https://github.com/TruongVuMinhVan" target="_blank"
+                    class="string">"https://github.com/TruongVuMinhVan"</a>
+            </div>
+
+            <!-- Location with map popup -->
+            <div class="location-wrapper">
+                <a class="location-link"
+                    href="https://www.google.com/maps/place/69+T%C3%A2n+L%E1%BA%ADp,+%C4%90%C3%B4ng+Ho%C3%A0,+D%C4%A9+An,+B%C3%ACnh+D%C6%B0%C6%A1ng+591000,+Vi%E1%BB%87t+Nam/@10.8766003,106.8098629,17z"
+                    target="_blank">
+                    <i class="fas fa-map-marker-alt"></i>
+                    69 Tan Lap, Dong Hoa, Di An, Binh Duong, Vietnam
+                </a>
+                <div class="map-popup">
+                    <iframe
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=106.8070%2C10.8740%2C106.8130%2C10.8790&layer=mapnik&marker=10.8766%2C106.8099"
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="hero-social">
+                <a href="https://www.linkedin.com/in/van-truong-vu-minh-9589513b4/" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/TruongVuMinhVan" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="tel:0338611716">
+                    <i class="fas fa-phone"></i> 0338611716
+                </a>
+                <a href="mailto:sieumc1990@gmail.com">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <!-- Terminal Window -->
+            <div class="terminal-window" id="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </div>
+                    <span class="terminal-title">van@portfolio — ~/auto-script</span>
+                </div>
+                <div class="terminal-body" id="terminalBody">
+                    <!-- Lines will be typed by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

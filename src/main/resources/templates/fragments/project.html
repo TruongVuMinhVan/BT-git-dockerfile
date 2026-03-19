@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <section id="project" class="section fade-in" th:fragment="project">
+        <div class="section-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 30px;">
+            <div class="section-icon"><i class="fas fa-project-diagram"></i></div>
+            <h2>_project</h2>
+            <button class="crud-btn btn-add" title="Thêm dự án mới" onclick="alert('Đang phát triển tính năng thêm mới!')" style="background: rgba(0, 212, 255, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); width: 28px; height: 28px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;"><i class="fas fa-plus"></i></button>
+            <div class="section-line" style="flex: 1; height: 1px; background: var(--border-color);"></div>
+        </div>
+
+        <div class="project-card" style="position: relative;">
+            <div class="crud-actions" style="position: absolute; top: 15px; right: 15px; display: flex; gap: 8px; opacity: 0; transition: opacity 0.2s; z-index: 5;">
+                <button class="crud-btn btn-edit" title="Sửa" onclick="alert('Tính năng sửa')" style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); border-radius: 4px; color: var(--accent-yellow); cursor: pointer; padding: 6px 10px;"><i class="fas fa-edit"></i></button>
+                <button class="crud-btn btn-delete" title="Xóa" onclick="alert('Tính năng xóa')" style="background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-color); border-radius: 4px; color: #ff5f56; cursor: pointer; padding: 6px 10px;"><i class="fas fa-trash-alt"></i></button>
+            </div>
+            
+            <div class="project-info">
+                <div class="project-header">
+                    <div>
+                        <h3>🏥 Elderly Health Support System with AI</h3>
+                        <span class="project-role"><i class="fas fa-user-cog"></i> Full-stack & AI Developer | May
+                            2025 – Dec 2025</span>
+                    </div>
+                </div>
+
+                <div class="project-tags">
+                    <span>Next.js</span>
+                    <span>Flutter</span>
+                    <span>FastAPI</span>
+                    <span>MySQL</span>
+                    <span>PyTorch</span>
+                    <span>Gemini AI</span>
+                    <span>Docker</span>
+                </div>
+
+                <ul class="project-features">
+                    <li><strong>System Architecture:</strong> Comprehensive healthcare platform with Next.js web
+                        dashboard, Flutter mobile app, and FastAPI/MySQL backend.</li>
+                    <li><strong>AI Integration:</strong> Ensemble deep learning model (ResNet50 + ViT) achieving
+                        <strong style="color: var(--accent-green);">94.1% accuracy</strong> on 24,000+ images for 11
+                        skin diseases.</li>
+                    <li><strong>Conversational AI:</strong> Google Gemini API for 24/7 medical chatbot with health
+                        metrics analysis.</li>
+                    <li><strong>Core Features:</strong> Real-time vital sign tracking, smart medication reminders,
+                        appointment scheduling.</li>
+                </ul>
+
+                <a href="/project" class="project-link">
+                    <i class="fas fa-arrow-right"></i> View Full Project Details
+                </a>
+            </div>
+
+            <!-- Project Screenshots -->
+            <div class="project-gallery">
+                <div class="image-frame gallery-web">
+                    <img src="/images/project-web.png" alt="Web Dashboard">
+                    <div class="frame-label"><i class="fas fa-desktop"></i> Web Dashboard – Next.js</div>
+                </div>
+                <div class="image-frame gallery-mobile">
+                    <img src="/images/project-mobile.png" alt="Mobile App">
+                    <div class="frame-label"><i class="fas fa-mobile-alt"></i> Mobile – Flutter</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

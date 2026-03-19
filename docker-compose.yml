@@ -1,0 +1,53 @@
+services:
+  # MySQL Database Service
+  mysql_db:
+    image: mysql:8.0
+    container_name: portfolio-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: portfolio_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+  # phpMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: portfolio-phpmyadmin
+    environment:
+      PMA_HOST: mysql_db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql_db
+    restart: unless-stopped
+
+  # Spring Boot Application Service
+  app:
+    image: maven:3.9-eclipse-temurin-17
+    container_name: portfolio-app
+    working_dir: /app
+    volumes:
+      - .:/app
+      # Cache maven dependencies to speed up subsequent runs
+      - maven-repo:/root/.m2
+    ports:
+      - "8080:8080"
+    command: mvn spring-boot:run
+    depends_on:
+      - mysql_db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql_db:3306/portfolio_db?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+volumes:
+  mysql-data:
+  maven-repo:
