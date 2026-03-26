@@ -10,5 +10,5 @@ FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 # Chi lay file .jar tu builder (GD1)
 COPY --from=builder /app/target/*.jar app.jar
-EXPOSE 80
-ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=80"]
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=8080"]
