@@ -10,6 +10,5 @@ FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 # Chi lay file .jar tu builder (GD1)
 COPY --from=builder /app/target/*.jar app.jar
-EXPOSE 8080
-# Lenh "bat cong tac" de chay ung dung
-ENTRYPOINT ["java", "-jar", "app.jar"]
+EXPOSE 80
+ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=80"]
