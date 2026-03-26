@@ -60,6 +60,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- H2 In-Memory Database (thay MySQL khi không có server DB) -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
