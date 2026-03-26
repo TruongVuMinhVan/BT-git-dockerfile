@@ -10,19 +10,19 @@ jobs:
 
     steps:
       - name: Bước 1 - Lấy code từ Github
-        uses: actions/checkout@v6.0.2            
+        uses: actions/checkout@v4
 
       - name: Bước 2 - Thiết lập môi trường Build siêu tốc  
-        uses: docker/setup-buildx-action@v4.0.0  # Cài đặt công cụ đóng gói của Docker
+        uses: docker/setup-buildx-action@v3
 
       - name: Bước 3 - Đăng nhập vào Docker Hub
-        uses: docker/login-action@v4.0.0       # Action Đăng nhập Docker Hub
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Bước 4 - Đóng gói và Đẩy Image lên mạng
-        uses: docker/build-push-action@v7.0.0    # Action Đóng gói & Đẩy Image
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
