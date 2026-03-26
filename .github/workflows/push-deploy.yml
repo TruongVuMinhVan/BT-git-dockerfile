@@ -29,12 +29,9 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-app:latest
 
       - name: Bước 5 - Deploy lên Slot S7 (port 21042)
+        env:
+          DEPLOY_URL: ${{ secrets.DEPLOY_URL }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: |
           curl -s -o /dev/null -w "%{http_code}" \
-            -X POST "${{ secrets.DEPLOY_URL }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "image": "${{ secrets.DOCKER_USERNAME }}/portfolio-app:latest",
-              "containerPort": 80,
-              "hostPort": 21042
-            }'
+            "${DEPLOY_URL}?repo=${DOCKER_USERNAME}/portfolio-app&tag=latest&slot=7&container_port=80"
