@@ -212,4 +212,210 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     };
+
+    // ===== 6. SKILL CRUD LOGIC =====
+    const skillIcons = [
+        'fa-server', 'fa-brain', 'fa-laptop-code', 'fa-palette', 
+        'fa-tools', 'fa-bolt', 'fa-rocket', 'fa-database', 'fa-code', 'fa-mobile-alt', 'fa-cloud'
+    ];
+    let currentIconIdx = 0;
+
+    // Fetch Skills from DB
+    window.fetchSkills = async function() {
+        try {
+            const response = await fetch('/api/skills');
+            if (!response.ok) throw new Error('Network response was not ok');
+            const skills = await response.json();
+            renderSkills(skills);
+        } catch (error) {
+            console.error('Error fetching skills:', error);
+            const container = document.getElementById('skillsGridContainer');
+            if (container) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; color: #ff5f56; padding: 50px 0;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                        <p>Failed to load Database. Make sure Docker is running.</p>
+                    </div>`;
+            }
+        }
+    };
+
+    function renderSkills(skills) {
+        const container = document.getElementById('skillsGridContainer');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        if (skills.length === 0) {
+            container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 50px;">Chưa có kỹ năng nào. Bấm [+] để thêm mới!</div>';
+            return;
+        }
+
+        skills.forEach(skill => {
+            const card = document.createElement('div');
+            card.className = 'skill-card';
+            card.style.position = 'relative';
+            
+            const escTitle = skill.title.replace(/'/g, "\\'");
+            const escContent = skill.content.replace(/'/g, "\\'");
+            const escIcon = skill.icon.replace(/'/g, "\\'");
+            
+            card.innerHTML = `
+                <div class="crud-actions" style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; opacity: 0; transition: opacity 0.2s;">
+                    <button class="crud-btn btn-edit" title="Sửa" onclick="openEditSkillModal(${skill.id}, '${escTitle}', '${escContent}', '${escIcon}')" style="background: transparent; border: none; color: var(--accent-yellow); cursor: pointer; padding: 4px;"><i class="fas fa-edit"></i></button>
+                    <button class="crud-btn btn-delete" title="Xóa" onclick="openDeleteSkillModal(${skill.id}, '${escTitle}', 'skill')" style="background: transparent; border: none; color: #ff5f56; cursor: pointer; padding: 4px;"><i class="fas fa-trash-alt"></i></button>
+                </div>
+                <div class="skill-icon"><i class="fas ${skill.icon}"></i></div>
+                <div>
+                    <strong>${skill.title}</strong>
+                    <p>${skill.content}</p>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Call on load
+    if (document.getElementById('skillsGridContainer')) {
+        fetchSkills();
+    }
+
+    // MODAL STATE CONTROLS
+    window.openSkillModal = function() {
+        document.getElementById('skillModalTitle').innerText = 'Add New Skill';
+        document.getElementById('skillInputId').value = '';
+        document.getElementById('skillInputTitle').value = '';
+        document.getElementById('skillInputContent').value = '';
+        currentIconIdx = Math.max(0, skillIcons.indexOf('fa-server'));
+        updateSkillIconDisplay();
+        showModal('skillModal');
+    };
+
+    window.openEditSkillModal = function(id, title, content, icon) {
+        document.getElementById('skillModalTitle').innerText = 'Edit Skill';
+        document.getElementById('skillInputId').value = id;
+        document.getElementById('skillInputTitle').value = title;
+        document.getElementById('skillInputContent').value = content;
+        
+        let idx = skillIcons.indexOf(icon);
+        if (idx === -1) {
+            skillIcons.push(icon);
+            idx = skillIcons.length - 1;
+        }
+        currentIconIdx = idx;
+        updateSkillIconDisplay();
+        showModal('skillModal');
+    };
+
+    window.closeSkillModal = function() { hideModal('skillModal'); };
+
+    window.nextSkillIcon = function() {
+        currentIconIdx = (currentIconIdx + 1) % skillIcons.length;
+        updateSkillIconDisplay();
+    };
+
+    window.prevSkillIcon = function() {
+        currentIconIdx = (currentIconIdx - 1 + skillIcons.length) % skillIcons.length;
+        updateSkillIconDisplay();
+    };
+
+    function updateSkillIconDisplay() {
+        const iconClass = skillIcons[currentIconIdx];
+        document.getElementById('skillCurrentIcon').className = 'fas ' + iconClass;
+        document.getElementById('skillIconName').innerText = iconClass;
+        document.getElementById('skillInputValue').value = iconClass;
+    }
+
+    window.saveSkill = async function() {
+        const id = document.getElementById('skillInputId').value;
+        const title = document.getElementById('skillInputTitle').value.trim();
+        const content = document.getElementById('skillInputContent').value.trim();
+        const icon = document.getElementById('skillInputValue').value;
+        
+        if (!title || !content) {
+            alert('Vui lòng nhập đầy đủ Title và Content!');
+            return;
+        }
+        
+        const skillData = { title, content, icon };
+        if (id) skillData.id = id;
+
+        try {
+            const btn = document.querySelector('#skillModal .btn-save');
+            const oldText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Saving...';
+            btn.disabled = true;
+
+            const response = await fetch('/api/skills', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(skillData)
+            });
+
+            btn.innerHTML = oldText;
+            btn.disabled = false;
+
+            if (!response.ok) throw new Error('Save failed');
+            
+            closeSkillModal();
+            fetchSkills(); // Reload grid
+        } catch (error) {
+            alert('Lỗi: Không thể lưu dữ liệu vào CSDL!');
+            console.error(error);
+        }
+    };
+
+    // DELETE MODAL LOGIC
+    window.openDeleteSkillModal = function(id, name, type) {
+        document.getElementById('deleteTargetId').value = id;
+        document.getElementById('deleteTargetName').innerText = name;
+        document.getElementById('deleteTargetType').value = type;
+        showModal('deleteModal');
+    };
+
+    window.closeDeleteModal = function() { hideModal('deleteModal'); };
+
+    window.executeDelete = async function() {
+        const id = document.getElementById('deleteTargetId').value;
+        const type = document.getElementById('deleteTargetType').value;
+        
+        try {
+            const btn = document.querySelector('#deleteModal .btn-save');
+            const oldText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Deleting...';
+            btn.disabled = true;
+            
+            let url = '';
+            if (type === 'skill') url = `/api/skills/${id}`;
+            // add project url later if needed
+            
+            const response = await fetch(url, { method: 'DELETE' });
+            
+            btn.innerHTML = oldText;
+            btn.disabled = false;
+            
+            if (!response.ok) throw new Error('Delete failed');
+            
+            closeDeleteModal();
+            if (type === 'skill') window.fetchSkills(); // refresh UI
+        } catch (error) {
+            alert('Lỗi: Không thể xóa mục này!');
+            console.error(error);
+        }
+    };
+
+    // Helper functions
+    function showModal(id) {
+        const modal = document.getElementById(id);
+        if(!modal) return;
+        modal.style.display = 'flex';
+        setTimeout(() => modal.classList.add('show'), 10);
+    }
+    
+    function hideModal(id) {
+        const modal = document.getElementById(id);
+        if(!modal) return;
+        modal.classList.remove('show');
+        setTimeout(() => modal.style.display = 'none', 300);
+    }
+
 });

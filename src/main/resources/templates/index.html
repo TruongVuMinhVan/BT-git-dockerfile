@@ -18,8 +18,7 @@
 
     <!-- ===== IDE LAYOUT ===== -->
     <div class="ide-container">
-        <!-- Sidebar File Explorer -->
-        <aside th:replace="~{fragments/sidebar :: sidebar}"></aside>
+        <!-- Sidebar Removed per user request -->
 
         <!-- Main Editor Area -->
         <main class="ide-main">
@@ -51,6 +50,10 @@
 
     <!-- Replace with footer fragment -->
     <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <!-- Modals -->
+    <div th:replace="~{fragments/skill-modal :: skillModal}"></div>
+    <div th:replace="~{fragments/delete-modal :: deleteModal}"></div>
 
     <script th:src="@{/js/script.js}"></script>
 </body>

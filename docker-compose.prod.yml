@@ -17,7 +17,7 @@ services:
     image: truongvuminhvan/portfolio-app:latest
     container_name: portfolio_app_prod
     ports:
-      - "80:8080"
+      - "21042:8080"
     depends_on:
       - mysql_db
     environment:

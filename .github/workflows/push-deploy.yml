@@ -24,6 +24,17 @@ jobs:
       - name: Bước 4 - Đóng gói và Đẩy Image lên mạng
         uses: docker/build-push-action@v7.0.0    # Action Đóng gói & Đẩy Image
         with:
-          context: .                         # Xây dựng Dockerfile
-          push: true                         # Cho phép đẩy lên Docker Hub
-          tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-app:latest  # Tên Image 
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/portfolio-app:latest
+
+      - name: Bước 5 - Deploy lên Slot S7 (port 21042)
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" \
+            -X POST "${{ secrets.DEPLOY_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "image": "${{ secrets.DOCKER_USERNAME }}/portfolio-app:latest",
+              "containerPort": 80,
+              "hostPort": 21042
+            }'

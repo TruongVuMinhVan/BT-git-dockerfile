@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div id="deleteModal" class="modal-overlay" style="display: none;" th:fragment="deleteModal">
+        <div class="modal-content ide-theme" style="width: 450px;">
+            <div class="modal-header" style="border-bottom: 1px solid rgba(255, 95, 86, 0.3);">
+                <h3><i class="fas fa-exclamation-triangle" style="color: #ff5f56;"></i> Warning</h3>
+                <button class="close-modal" onclick="closeDeleteModal()"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="modal-body" style="text-align: center; padding: 30px;">
+                <p style="color: var(--text-primary); font-size: 1.1rem; margin-bottom: 15px;">
+                    Bạn có chắc chắn muốn xóa mục <br><strong id="deleteTargetName" style="color: var(--accent-yellow);"></strong> không?
+                </p>
+                <p style="font-size: 0.85em; color: var(--text-muted); font-family: var(--font-mono);">
+                    Hành động này sẽ xóa dữ liệu vĩnh viễn khỏi Database.
+                </p>
+                <input type="hidden" id="deleteTargetId">
+                <input type="hidden" id="deleteTargetType"> <!-- 'skill' or 'project' -->
+            </div>
+            
+            <div class="modal-footer" style="justify-content: center; border-top: none;">
+                <button class="btn-cancel" onclick="closeDeleteModal()">Hủy Bỏ</button>
+                <button class="btn-save" style="background: rgba(255, 95, 86, 0.1); border-color: #ff5f56; color: #ff5f56;" onclick="executeDelete()"><i class="fas fa-trash-alt"></i> Xóa Vĩnh Viễn</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
